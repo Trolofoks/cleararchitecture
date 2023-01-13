@@ -16,10 +16,15 @@ class MainActivity : AppCompatActivity() {
     //by lazy позволяет загружать их только когда они нужны(т.е. после onCreate) чтобы не надо было инициализировать и создавать отдельно
     //(LazyThreadSafetyMode.NONE) убирает многопоточность чтобы убрать нагрузку
     //всегда стоит передавать applicationContext т.к. с activityContext мне так надежен
-    private val sharedPrefUserStorage by lazy(LazyThreadSafetyMode.NONE) {SharedPrefUserStorage(applicationContext)}
-    private val userRepositoryImplementation by lazy(LazyThreadSafetyMode.NONE) { UserRepositoryImplementation(sharedPrefUserStorage) }
-    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) { SaveUserNameUseCase(userRepository = userRepositoryImplementation) }
-    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) { GetUserNameUseCase(userRepository = userRepositoryImplementation) }
+    private val userRepository by lazy(LazyThreadSafetyMode.NONE) {
+        UserRepositoryImplementation(userStorage = SharedPrefUserStorage(context = applicationContext))
+    }
+    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
+        SaveUserNameUseCase( userRepository = userRepository )
+    }
+    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
+        GetUserNameUseCase( userRepository = userRepository )
+    }
 
     private lateinit var binding: ActivityMainBinding
 
