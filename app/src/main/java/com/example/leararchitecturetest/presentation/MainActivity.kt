@@ -13,20 +13,17 @@ import com.example.leararchitecturetest.domain.models.UserNameModel
 import com.example.leararchitecturetest.domain.repository.UserRepository
 import com.example.leararchitecturetest.domain.usecase.GetUserNameUseCase
 import com.example.leararchitecturetest.domain.usecase.SaveUserNameUseCase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var vm: MainViewModel
+    private val vm by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //инициализируем вместе с Фабрикой
-        vm = ViewModelProvider(this, MainViewModelFactory(this))
-            .get(MainViewModel::class.java)
 
         //Обсерверим
         vm.resultLive.observe(this, Observer{
