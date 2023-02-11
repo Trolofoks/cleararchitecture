@@ -8,9 +8,12 @@ import com.example.leararchitecturetest.domain.models.SaveUserNameParamModel
 import com.example.leararchitecturetest.domain.models.UserNameModel
 import com.example.leararchitecturetest.domain.usecase.GetUserNameUseCase
 import com.example.leararchitecturetest.domain.usecase.SaveUserNameUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 //передаем сюда все нужное
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val saveUserNameUseCase: SaveUserNameUseCase,
     private val getUserNameUseCase: GetUserNameUseCase
 ) : ViewModel() {
