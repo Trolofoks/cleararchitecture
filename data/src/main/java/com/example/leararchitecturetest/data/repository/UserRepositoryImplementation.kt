@@ -7,7 +7,7 @@ import com.example.leararchitecturetest.domain.models.UserNameModel
 import com.example.leararchitecturetest.domain.repository.UserRepository
 
 //добавляем зависимость от UserStorage
-class UserRepositoryImplementation(private var userStorage: UserStorage) : UserRepository{
+class UserRepositoryImplementation (private var userStorage: UserStorage) : UserRepository{
 
     override fun saveName(saveParam: SaveUserNameParamModel):Boolean{
         //превращаем model из domain в model из data и никакой логики

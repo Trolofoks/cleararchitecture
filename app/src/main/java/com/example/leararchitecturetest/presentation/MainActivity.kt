@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.leararchitecturetest.databinding.ActivityMainBinding
 import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.components.ActivityRetainedComponent
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
